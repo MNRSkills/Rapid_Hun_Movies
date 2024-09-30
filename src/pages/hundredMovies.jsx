@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
+import data from "../../data.json";
 import axios from "axios";
 import MoviesCard from "../Components/MoviesCard";
+import MockAdapter from "axios-mock-adapter";
 
 const HundredMovies = () => {
   const [topHunMovies, setTopMovies] = useState([]);
-  const options = {
-    method: "GET",
-    url: "https://imdb-top-100-movies.p.rapidapi.com/",
-    headers: {
-      "x-rapidapi-key": "53fd323a60msh0a9927ee29aa502p11763ajsnd24449e9c20b",
-      "x-rapidapi-host": "imdb-top-100-movies.p.rapidapi.com",
-    },
-  };
+  // const options = {
+  //   method: "GET",
+  //   url: "https://imdb-top-100-movies.p.rapidapi.com/",
+  //   headers: {
+  //     "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
+  //     "x-rapidapi-host": "imdb-top-100-movies.p.rapidapi.com",
+  //   },
+  // };
 
   const fetchMovies = async () => {
     try {
@@ -24,6 +26,12 @@ const HundredMovies = () => {
 
   useEffect(() => {
     // fetchMovies();
+    const mock = new MockAdapter(axios);
+    mock.onGet("/movies").reply(200, data);
+
+    axios.get("/movies").then((response) => {
+      return setTopMovies(response.data);
+    });
   }, []);
   return (
     <div div className="flex flex-wrap justify-center">
