@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Searchbar = () => {
+const Searchbar = (props) => {
   const [search, setSearch] = useState("");
   const handleMovieSearch = () => {
     console.log("this is working");

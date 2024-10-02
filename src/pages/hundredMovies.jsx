@@ -24,6 +24,10 @@ const HundredMovies = () => {
     }
   };
 
+  const handleWishList = (id) => {
+    console.log("handleer was clicked and licked", id);
+  };
+
   useEffect(() => {
     // fetchMovies();
     const mock = new MockAdapter(axios);
@@ -36,7 +40,13 @@ const HundredMovies = () => {
   return (
     <div div className="flex flex-wrap justify-center">
       {topHunMovies.map((movie, index) => {
-        return <MoviesCard movie={movie} key={index} />;
+        return (
+          <MoviesCard
+            movie={movie}
+            key={index}
+            handleWishList={handleWishList}
+          />
+        );
       })}
     </div>
   );

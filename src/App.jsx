@@ -7,7 +7,7 @@ import HundredMovies from "./pages/hundredMovies";
 import Navbar from "./Components/navbar";
 
 function App() {
-  const [count, setCount] = useState(0);
+
 
   return (
     <>
